@@ -58,11 +58,6 @@ const ContactPage: FC = () => {
                 setIsSubmitting(false)
                 return
             }
-            if (!japanese.trim()) {
-                setError('일본어를 입력해주세요.')
-                setIsSubmitting(false)
-                return
-            }
         } else {
             if (!content.trim()) {
                 setError('내용을 입력해주세요.')
@@ -174,13 +169,12 @@ const ContactPage: FC = () => {
                         <div>
                             <input
                                 type="text"
-                                placeholder="일본어 *"
+                                placeholder="일본어"
                                 className="w-full p-2 border rounded"
                                 value={japanese}
                                 onChange={handleJapaneseChange}
                                 disabled={isSubmitting}
                             />
-                            <p className="text-sm text-gray-500 mt-1">* 필수 입력</p>
                         </div>
                     </div>
                 ) : (
