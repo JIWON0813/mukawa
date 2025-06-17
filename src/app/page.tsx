@@ -123,6 +123,15 @@ const Home: FC = () => {
                 </div>
                 <SearchBar onSearch={handleSearch} />
                 <div className="mt-4 text-center">
+                    <h2 className="text-xl font-semibold mb-2">사용 방법</h2>
+                    <p className="text-gray-600">
+                        한국어 또는 영어로 검색 시 일본어로 자동 번역 후 무카와 사이트로 이동해 검색 결과가 나옵니다
+                    </p>
+                    <p className="text-gray-500 text-sm mt-2">
+                        ps 해당 사이트에서 결과가 바로 나올 수 있도록 하고 싶었는데 그러면 사이트가 막혀 사이트 이동으로 구현할 수 밖에 없었습니다..ㅠㅠ
+                    </p>
+                </div>
+                <div className="mt-4 text-center">
                     무카와 주문방법(추후 추가 예정)
                 </div>
                 <div className="mt-8">
