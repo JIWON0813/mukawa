@@ -2,6 +2,7 @@ import { supabase } from '../supabase'
 
 interface SearchData {
     keyword: string
+    is_fail?: boolean | null
     ip_address?: string | null
 }
 

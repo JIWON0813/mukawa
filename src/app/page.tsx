@@ -62,23 +62,20 @@ const Home: FC = () => {
         // 부분 매칭 시도
         let result = text
         const unmapped: string[] = []
-        const words = text.split(/(?=[가-힣])/) // 한글 단어 단위로 분리
+        let isMapped = false
 
-        words.forEach(word => {
-            if (word.trim() === '') return
-
-            let isMapped = false
-            Object.entries(wordMapping as WordMapping).forEach(([kor, jap]) => {
-                if (word.includes(kor)) {
-                    result = result.replace(kor, jap)
-                    isMapped = true
-                }
-            })
-
-            if (!isMapped) {
-                unmapped.push(word)
+        // 전체 텍스트에 대해 매핑 검사
+        Object.entries(wordMapping as WordMapping).forEach(([kor, jap]) => {
+            if (text.includes(kor)) {
+                result = result.replace(kor, jap)
+                isMapped = true
             }
         })
+
+        // 매핑된 것이 없으면 전체 텍스트를 unmapped로 처리
+        if (!isMapped) {
+            unmapped.push(text)
+        }
 
         return { result, unmapped }
     }
@@ -89,19 +86,20 @@ const Home: FC = () => {
         // 한글/일본어는 대소문자 영향 없음, 영어는 대문자로 통일
         const { result: japaneseKeyword, unmapped } = convertToJapanese(normalized)
 
-        if (unmapped.length > 0) {
-            alert(`다음 단어들의 일본어 매핑이 없습니다:\n${unmapped.join(', ')}`)
-            return
-        }
-
         // 검색어 저장
         try {
             await search.create({
                 keyword: normalized,
+                is_fail: unmapped.length > 0 ? true : null,
                 ip_address: ipAddress
             })
         } catch (error) {
             console.error('검색어 저장 중 오류 발생:', error)
+        }
+
+        if (unmapped.length > 0) {
+            alert(`다음 검색어의 일본어 매핑이 없습니다:\n${keyword}`)
+            return
         }
 
         const encodedKeyword = encodeToEucJp(japaneseKeyword)
