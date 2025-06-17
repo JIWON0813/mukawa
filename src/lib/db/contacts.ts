@@ -16,9 +16,13 @@ export const contacts = {
      * @returns 생성된 문의 데이터와 에러 정보
      */
     create: async (data: ContactData) => {
+        // KST 시간 설정 (UTC+9)
+        const now = new Date()
+        const kstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000))
+
         return await supabase
             .from('contacts')
-            .insert([data])
+            .insert([{ ...data, created_at: kstTime.toISOString() }])
             .select()
     },
 

@@ -12,9 +12,13 @@ export const search = {
      * @returns 생성된 검색어 데이터와 에러 정보
      */
     create: async (data: SearchData) => {
+        // KST 시간 설정 (UTC+9)
+        const now = new Date()
+        const kstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000))
+
         return await supabase
             .from('search')
-            .insert([data])
+            .insert([{ ...data, created_at: kstTime.toISOString() }])
             .select()
     },
 
