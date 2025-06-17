@@ -123,14 +123,7 @@ const Home: FC = () => {
                 </div>
                 <SearchBar onSearch={handleSearch} />
                 <div className="mt-4 text-center">
-                    <a 
-                        href="https://gall.dcinside.com/mgallery/board/view?id=nuncestbibendum&no=16287"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:underline"
-                    >
-                        무카와 주문방법
-                    </a>
+                    무카와 주문방법(추후 추가 예정)
                 </div>
                 <div className="mt-8">
                     <ProductList />
