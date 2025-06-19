@@ -83,6 +83,12 @@ const Home: FC = () => {
     const handleSearch = async (keyword: string): Promise<void> => {
         // 검색어에서 모든 공백 제거 및 영어 대문자 변환
         const normalized = keyword.replace(/\s+/g, '').toUpperCase()
+        // 특수 키워드 차단
+        const forbidden = ['류카', '뉴카', '뉴본']
+        if (forbidden.some(word => normalized.includes(word.toUpperCase()))) {
+            alert('검색결과가 존재하지 않습니다')
+            return
+        }
         // 한글/일본어는 대소문자 영향 없음, 영어는 대문자로 통일
         const { result: japaneseKeyword, unmapped } = convertToJapanese(normalized)
 
