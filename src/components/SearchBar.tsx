@@ -59,15 +59,21 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
                     onKeyDown={handleKeyDown}
                     placeholder="검색어를 입력하세요"
                     className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellCheck="false"
                 />
                 <button
                     onClick={handleSearch}
-                    className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                    onTouchEnd={handleSearch}
+                    className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-colors touch-manipulation"
+                    type="button"
                 >
                     검색
                 </button>
             </div>
-            
+
             <div className="bg-gray-50 p-4 rounded-lg">
                 <h3 className="text-sm font-medium text-gray-700 mb-2">최근 검색어</h3>
                 <div className="flex flex-wrap gap-2">

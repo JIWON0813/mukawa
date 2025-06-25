@@ -110,7 +110,32 @@ const Home: FC = () => {
 
         const encodedKeyword = encodeToEucJp(japaneseKeyword)
         const searchUrl = `https://mukawa-spirit.com/?mode=srh&cid=&keyword=${encodedKeyword}`
-        window.open(searchUrl, '_blank')
+
+        // 모바일 환경 감지
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+
+        // console.log('검색 URL:', searchUrl)
+        // console.log('모바일 환경:', isMobile)
+
+        try {
+            if (isMobile) {
+                // 모바일에서는 현재 창에서 열기 (팝업 차단 방지)
+                // console.log('모바일에서 현재 창으로 이동')
+                window.location.href = searchUrl
+            } else {
+                // 데스크톱에서는 새 탭에서 열기
+                // console.log('데스크톱에서 새 탭으로 열기')
+                const newWindow = window.open(searchUrl, '_blank')
+                if (!newWindow) {
+                    // console.log('팝업이 차단됨, 현재 창으로 이동')
+                    window.location.href = searchUrl
+                }
+            }
+        } catch (error) {
+            console.error('URL 열기 실패:', error)
+            // 폴백: 현재 창에서 열기
+            window.location.href = searchUrl
+        }
     }
 
     return (
