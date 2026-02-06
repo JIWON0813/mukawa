@@ -1,61 +1,25 @@
-import { FC, useState, useEffect } from 'react'
+'use client'
 
-interface Category {
-    name: string
-    brands: Brand[]
-}
-
-interface Brand {
-    name: string
-    products: Product[]
-}
-
-interface Product {
-    name: string
-    price: string
-    imageUrl: string
-    url: string
-}
-
-interface ApiResponse {
-    categories?: Category[]
-    error?: string
-}
+import { FC } from 'react'
 
 const ProductList: FC = () => {
-    const [categories, setCategories] = useState<Category[]>([])
-    const [loading, setLoading] = useState<boolean>(true)
-    const [error, setError] = useState<string | null>(null)
-
-    // useEffect(() => {
-    //     const fetchData = async (): Promise<void> => {
-    //         try {
-    //             const response = await fetch('/api/scrape')
-    //             const data: ApiResponse = await response.json()
-
-    //             if (data.error) {
-    //                 setError(data.error)
-    //             } else if (data.categories) {
-    //                 setCategories(data.categories)
-    //             }
-    //         } catch (err) {
-    //             setError('데이터를 불러오는데 실패했습니다.')
-    //         } finally {
-    //             setLoading(false)
-    //         }
-    //     }
-
-    //     fetchData()
-    // }, [])
-
-    return (
-        <div className="container mx-auto px-4 py-8">
-            <div className="text-center py-12">
-                <h2 className="text-2xl font-bold text-gray-700">무카와 상품 목록 보여질 수 있도록 준비 중입니다</h2>
-                <p className="mt-4 text-gray-500">차후 구현 예정입니다.</p>
-            </div>
+  return (
+    <div className="animate-slide-up delay-400">
+      <div className="glass rounded-2xl p-8 text-center">
+        <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-dark-800 flex items-center justify-center">
+          <svg className="w-8 h-8 text-dark-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
         </div>
-    )
+        <h2 className="text-xl font-semibold text-dark-200 mb-2">
+          상품 목록 준비 중
+        </h2>
+        <p className="text-dark-500 text-sm">
+          상품을 한눈에 볼 수 있도록 준비하고 있습니다
+        </p>
+      </div>
+    </div>
+  )
 }
 
-export default ProductList 
+export default ProductList
